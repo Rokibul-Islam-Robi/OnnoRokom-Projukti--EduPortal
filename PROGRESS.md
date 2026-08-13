@@ -3,7 +3,7 @@
 Status: COMPLETE — Backend complete, Database schema & seeds complete, Frontend fully implemented & verified.
 
 ## Assignment brief
-OnnoRokom Projukti Limited recruitment task: a role-based (Admin / Teacher / Student) Assignment & Submission Management System.
+OnnoRokom Projukti Limited Enterprise Project: a role-based (Admin / Teacher / Student) Assignment & Submission Management System.
 Stack: Next.js + React + TypeScript frontend, ASP.NET Core Web API (C#) backend, PostgreSQL, JWT auth, xUnit tests.
 
 ## Completed Components Summary
