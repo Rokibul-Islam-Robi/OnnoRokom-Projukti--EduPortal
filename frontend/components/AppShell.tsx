@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useAuth } from "@/components/AuthProvider";
+import { NotificationBell } from "@/components/Notifications";
 
 interface NavItem {
   label: string;
@@ -98,6 +99,19 @@ export function AppShell({
       </aside>
 
       <main className="flex-1 overflow-y-auto">
+        {/* Top Header Bar */}
+        <header className="sticky top-0 z-40 border-b border-slate-200/80 bg-white/80 backdrop-blur-md px-8 py-3.5 flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <span className="inline-flex items-center rounded-md bg-slate-100 px-2.5 py-1 text-xs font-semibold text-slate-700">
+              {sectionLabel} Portal
+            </span>
+          </div>
+          
+          <div className="flex items-center gap-3">
+            <NotificationBell />
+          </div>
+        </header>
+
         <div className="mx-auto max-w-6xl px-8 py-8">{children}</div>
       </main>
     </div>

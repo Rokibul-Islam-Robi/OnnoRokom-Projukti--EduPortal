@@ -3,6 +3,7 @@
 import { FormEvent, useEffect, useState } from "react";
 import { Card } from "@/components/Card";
 import { Badge } from "@/components/Badge";
+import { Pagination } from "@/components/Pagination";
 import { api, ApiClientError } from "@/lib/api";
 import { UserRecord, SchoolClass, UserRole } from "@/lib/types";
 
@@ -16,6 +17,10 @@ export default function AdminUsersPage() {
   // Search & Filter state
   const [searchQuery, setSearchQuery] = useState("");
   const [roleFilter, setRoleFilter] = useState<string>("All");
+
+  // Pagination state
+  const [currentPage, setCurrentPage] = useState(1);
+  const [pageSize, setPageSize] = useState(10);
 
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
@@ -82,6 +87,9 @@ export default function AdminUsersPage() {
       (u.className && u.className.toLowerCase().includes(searchQuery.toLowerCase()));
     return matchesRole && matchesSearch;
   });
+
+  const totalPages = Math.ceil(filteredUsers.length / pageSize);
+  const paginatedUsers = filteredUsers.slice((currentPage - 1) * pageSize, currentPage * pageSize);
 
   return (
     <div className="space-y-6">
@@ -243,7 +251,7 @@ export default function AdminUsersPage() {
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-100">
-                {filteredUsers.map((u) => (
+                {paginatedUsers.map((u) => (
                   <tr key={u.id} className="hover:bg-slate-50/50 transition-colors">
                     <td className="px-6 py-4 font-semibold text-ink">{u.fullName}</td>
                     <td className="px-6 py-4 text-slate-600 font-mono text-xs">{u.email}</td>
@@ -280,6 +288,18 @@ export default function AdminUsersPage() {
             </table>
           </div>
         )}
+
+        <Pagination
+          currentPage={currentPage}
+          totalPages={totalPages}
+          totalItems={filteredUsers.length}
+          pageSize={pageSize}
+          onPageChange={setCurrentPage}
+          onPageSizeChange={(size) => {
+            setPageSize(size);
+            setCurrentPage(1);
+          }}
+        />
       </Card>
     </div>
   );
