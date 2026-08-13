@@ -59,10 +59,55 @@ export default function TeacherDashboardPage() {
         </div>
       ) : (
         <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
-          <StatCard label="Total Created" value={totalAssignments} subtext="Assignments in system" />
-          <StatCard label="Published" value={publishedCount} subtext="Visible to enrolled students" />
-          <StatCard label="Drafts" value={draftCount} subtext="Unpublished work" />
-          <StatCard label="Submissions" value={totalSubmissionsReceived} subtext="Received from students" />
+          <StatCard
+            label="Total Created"
+            value={totalAssignments}
+            subtext="Assignments in system"
+            variant="brand"
+            badgeText="Created"
+            icon={
+              <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+              </svg>
+            }
+          />
+          <StatCard
+            label="Published"
+            value={publishedCount}
+            subtext="Visible to enrolled students"
+            variant="emerald"
+            badgeText="Active"
+            icon={
+              <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+              </svg>
+            }
+          />
+          <StatCard
+            label="Drafts"
+            value={draftCount}
+            subtext="Unpublished work"
+            variant="amber"
+            badgeText="Draft"
+            icon={
+              <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4" />
+              </svg>
+            }
+          />
+          <StatCard
+            label="Submissions"
+            value={totalSubmissionsReceived}
+            subtext="Received from students"
+            variant="purple"
+            badgeText="Received"
+            icon={
+              <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+              </svg>
+            }
+          />
         </div>
       )}
 
