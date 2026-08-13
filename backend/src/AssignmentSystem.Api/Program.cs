@@ -22,7 +22,13 @@ Log.Logger = new LoggerConfiguration()
 builder.Host.UseSerilog();
 
 // ---- Services ----
-builder.Services.AddControllers();
+using System.Text.Json.Serialization;
+
+builder.Services.AddControllers()
+    .AddJsonOptions(options =>
+    {
+        options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+    });
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddScoped<CurrentUser>();
 builder.Services.AddScoped<IPasswordHasher, BCryptPasswordHasher>();

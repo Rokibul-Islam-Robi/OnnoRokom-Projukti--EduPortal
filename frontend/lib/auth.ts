@@ -29,15 +29,10 @@ export function clearSession() {
   localStorage.removeItem(USER_KEY);
 }
 
-export function dashboardPathForRole(role: string): string {
-  switch (role) {
-    case "Admin":
-      return "/admin";
-    case "Teacher":
-      return "/teacher";
-    case "Student":
-      return "/student";
-    default:
-      return "/login";
-  }
+export function dashboardPathForRole(role: string | number): string {
+  const r = String(role).toLowerCase();
+  if (r === "admin" || r === "0") return "/admin";
+  if (r === "teacher" || r === "1") return "/teacher";
+  if (r === "student" || r === "2") return "/student";
+  return "/login";
 }
