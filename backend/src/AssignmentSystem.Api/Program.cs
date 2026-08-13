@@ -1,4 +1,5 @@
 using System.Text;
+using System.Text.Json.Serialization;
 using AssignmentSystem.Api.Common;
 using AssignmentSystem.Api.Data;
 using AssignmentSystem.Api.Middleware;
@@ -22,8 +23,6 @@ Log.Logger = new LoggerConfiguration()
 builder.Host.UseSerilog();
 
 // ---- Services ----
-using System.Text.Json.Serialization;
-
 builder.Services.AddControllers()
     .AddJsonOptions(options =>
     {
