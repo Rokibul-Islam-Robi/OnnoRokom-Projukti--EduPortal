@@ -1,6 +1,6 @@
-# OnnoRokom Projukti - EduPortal
+# Shikhon-EduProtal
 
-A production-grade, role-based **Assignment & Submission Management System** built for OnnoRokom Projukti Limited. The system enables administrators to govern academic classes and subjects, allows teachers to create coursework and evaluate student submissions with marks and feedback, and gives students a dedicated portal to view and submit their work.
+A production-grade, role-based **Assignment & Submission Management System** built for Shikhon-EduProtal. The system enables administrators to govern academic classes and subjects, allows teachers to create coursework and evaluate student submissions with marks and feedback, and gives students a dedicated portal to view and submit their work.
 
 ---
 

@@ -25,7 +25,7 @@ const INITIAL_NOTIFICATIONS: NotificationItem[] = [
   {
     id: "1",
     title: "System Active",
-    message: "EduPortal Enterprise Academic Session initialized.",
+    message: "Shikhon-EduProtal Enterprise Academic Session initialized.",
     timestamp: "Just now",
     type: "info",
     read: false,

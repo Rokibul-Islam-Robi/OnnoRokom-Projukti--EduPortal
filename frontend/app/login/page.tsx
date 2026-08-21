@@ -60,9 +60,9 @@ export default function LoginPage() {
               </div>
               <div>
                 <span className="inline-block rounded-full bg-brand-500/10 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-brand-400 border border-brand-500/20">
-                  OnnoRokom Projukti
+                  Shikhon
                 </span>
-                <h1 className="text-xl font-extrabold tracking-tight text-white">EduPortal</h1>
+                <h1 className="text-xl font-extrabold tracking-tight text-white">EduProtal</h1>
               </div>
             </div>
 
@@ -71,7 +71,7 @@ export default function LoginPage() {
                 Enterprise Academic Governance
               </h2>
               <p className="text-xs leading-relaxed text-slate-400">
-                Role-based coursework creation, submission tracking, and grading environment engineered for OnnoRokom Projukti Limited.
+                Role-based coursework creation, submission tracking, and grading environment engineered for Shikhon-EduProtal.
               </p>
             </div>
           </div>
@@ -104,7 +104,7 @@ export default function LoginPage() {
           <div>
             <div className="flex items-center justify-between">
               <div>
-                <h3 className="text-xl font-bold tracking-tight text-ink">Sign in to EduPortal</h3>
+                <h3 className="text-xl font-bold tracking-tight text-ink">Sign in to Shikhon-EduProtal</h3>
                 <p className="mt-1 text-xs text-slate-500">Access your academic dashboard</p>
               </div>
               <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-600 border border-slate-200">
@@ -243,7 +243,7 @@ export default function LoginPage() {
 
           <div className="mt-8 border-t border-slate-100 pt-4 flex items-center justify-between text-[11px] text-slate-400">
             <span>🔒 256-Bit SSL Encrypted Session</span>
-            <span>OnnoRokom Projukti Limited</span>
+            <span>Shikhon-EduProtal</span>
           </div>
         </div>
       </div>

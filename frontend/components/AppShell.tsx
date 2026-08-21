@@ -45,8 +45,8 @@ export function AppShell({
             </svg>
           </div>
           <div>
-            <p className="text-[11px] font-bold uppercase tracking-wider text-brand-600">OnnoRokom Projukti</p>
-            <p className="text-sm font-extrabold tracking-tight text-ink">EduPortal</p>
+            <p className="text-[11px] font-bold uppercase tracking-wider text-brand-600">Shikhon</p>
+            <p className="text-sm font-extrabold tracking-tight text-ink">EduProtal</p>
           </div>
         </div>
 

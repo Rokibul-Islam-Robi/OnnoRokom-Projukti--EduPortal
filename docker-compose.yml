@@ -3,7 +3,7 @@ version: '3.8'
 services:
   postgres:
     image: postgres:16-alpine
-    container_name: eduportal-postgres
+    container_name: shikhon-eduprotal-postgres
     environment:
       POSTGRES_DB: assignment_system
       POSTGRES_USER: postgres
@@ -24,10 +24,10 @@ services:
     build:
       context: ./backend
       dockerfile: src/AssignmentSystem.Api/Dockerfile
-    container_name: eduportal-backend
+    container_name: shikhon-eduprotal-backend
     environment:
       - ConnectionStrings__DefaultConnection=Host=postgres;Port=5432;Database=assignment_system;Username=postgres;Password=postgrespassword
-      - Jwt__Key=SUPER_SECRET_ENTERPRISE_KEY_MUST_BE_AT_LEAST_256_BITS_LONG_FOR_EDUPORTAL
+      - Jwt__Key=SUPER_SECRET_ENTERPRISE_KEY_MUST_BE_AT_LEAST_256_BITS_LONG_FOR_SHIKHON_EDUPROTAL
       - Jwt__Issuer=AssignmentSystem.Api
       - Jwt__Audience=AssignmentSystem.Client
       - Cors__AllowedOrigins__0=http://localhost:3000
@@ -41,7 +41,7 @@ services:
     build:
       context: ./frontend
       dockerfile: Dockerfile
-    container_name: eduportal-frontend
+    container_name: shikhon-eduprotal-frontend
     environment:
       - NEXT_PUBLIC_API_URL=http://localhost:5215
     ports:

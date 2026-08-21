@@ -7,8 +7,8 @@ import { NotificationProvider } from "@/components/Notifications";
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
 export const metadata: Metadata = {
-  title: "OnnoRokom Projukti - EduPortal",
-  description: "Role-based assignment and submission management system for OnnoRokom Projukti Limited.",
+  title: "Shikhon-EduProtal",
+  description: "Role-based assignment and submission management system for Shikhon-EduProtal.",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
