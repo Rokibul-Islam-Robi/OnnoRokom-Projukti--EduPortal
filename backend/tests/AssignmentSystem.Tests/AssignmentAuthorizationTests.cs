@@ -20,7 +20,7 @@ public class AssignmentAuthorizationTests
         db.Subjects.Add(subject);
         db.SaveChanges();
 
-        var teacher = new User { FullName = "Nusrat Jahan", Email = "teacher@school.edu", Role = UserRole.Teacher, PasswordHash = "x" };
+        var teacher = new User { FullName = "Rokibul Islam", Email = "teacher@school.edu", Role = UserRole.Teacher, PasswordHash = "x" };
         db.Users.Add(teacher);
         db.SaveChanges();
 

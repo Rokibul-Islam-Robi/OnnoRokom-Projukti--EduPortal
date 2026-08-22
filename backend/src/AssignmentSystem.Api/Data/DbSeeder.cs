@@ -36,7 +36,7 @@ public static class DbSeeder
 
         var teacher = new User
         {
-            FullName = "Nusrat Jahan",
+            FullName = "Rokibul Islam",
             Email = "teacher@school.edu",
             PasswordHash = hasher.Hash("Teacher@123"),
             Role = UserRole.Teacher

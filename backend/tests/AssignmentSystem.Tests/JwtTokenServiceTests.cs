@@ -27,7 +27,7 @@ public class JwtTokenServiceTests
     public void GenerateToken_IncludesRoleClaim_MatchingTheUsersRole()
     {
         var service = BuildService();
-        var user = new User { Id = 5, FullName = "Nusrat Jahan", Email = "teacher@school.edu", Role = UserRole.Teacher };
+        var user = new User { Id = 5, FullName = "Rokibul Islam", Email = "teacher@school.edu", Role = UserRole.Teacher };
 
         var (token, _) = service.GenerateToken(user);
         var jwt = new JwtSecurityTokenHandler().ReadJwtToken(token);

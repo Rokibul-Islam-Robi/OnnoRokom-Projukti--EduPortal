@@ -23,7 +23,7 @@ public class SubmissionWorkflowTests
         db.Subjects.Add(subject);
         db.SaveChanges();
 
-        var teacher = new User { FullName = "Nusrat Jahan", Email = "teacher@school.edu", Role = UserRole.Teacher, PasswordHash = "x" };
+        var teacher = new User { FullName = "Rokibul Islam", Email = "teacher@school.edu", Role = UserRole.Teacher, PasswordHash = "x" };
         var student = new User { FullName = "Tanvir Ahmed", Email = "student@school.edu", Role = UserRole.Student, PasswordHash = "x", ClassId = cls.Id };
         db.Users.AddRange(teacher, student);
         db.SaveChanges();

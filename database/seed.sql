@@ -20,7 +20,7 @@ INSERT INTO "Subjects" ("Name", "Code", "ClassId") VALUES
 -- passwords listed above.
 INSERT INTO "Users" ("FullName", "Email", "PasswordHash", "Role", "IsActive", "ClassId") VALUES
     ('System Admin', 'admin@school.edu', '$2b$11$tH0AIl5oznYkdil0h3ucXOe1ejk3Ds9WMdOfLG4rr1qDvcpzWE9yC', 'Admin', TRUE, NULL),
-    ('Nusrat Jahan', 'teacher@school.edu', '$2b$11$HtcL1eHwX5s5cse/Dz0sSO/JBilBdeu5IhrGDPC093wgUnIIfp3.e', 'Teacher', TRUE, NULL),
+    ('Rokibul Islam', 'teacher@school.edu', '$2b$11$HtcL1eHwX5s5cse/Dz0sSO/JBilBdeu5IhrGDPC093wgUnIIfp3.e', 'Teacher', TRUE, NULL),
     ('Tanvir Ahmed', 'student@school.edu', '$2b$11$e/EJLoyVCkGa2xPxO4QHpOcBvFqximb.3XrhnYsyrJcsfIXsOiy6i', 'Student', TRUE, 1),
     ('Farhana Islam', 'farhana@school.edu', '$2b$11$s.0aXqpSue7Ab6LJcR8SHupteSVTWTRvhZhpHtjmI3G9nyXkspbbm', 'Student', TRUE, 1);
 
