@@ -96,14 +96,14 @@ export default function TeacherAssignmentDetailPage() {
   }
 
   if (loading) {
-    return <div className="p-8 text-center text-sm text-slate-500">Loading assignment details...</div>;
+    return <div className="p-12 text-center text-sm text-slate-500">Loading assignment details...</div>;
   }
 
   if (!assignment) {
     return (
-      <div className="p-8 text-center">
-        <p className="text-sm text-slate-500">Assignment not found.</p>
-        <Link href="/teacher" className="mt-4 inline-block text-xs font-semibold text-brand-600">
+      <div className="p-12 text-center">
+        <p className="text-sm font-bold text-slate-700">Assignment not found.</p>
+        <Link href="/teacher" className="mt-4 inline-block text-xs font-bold text-purple-700 hover:underline">
           &larr; Back to Dashboard
         </Link>
       </div>
@@ -114,59 +114,59 @@ export default function TeacherAssignmentDetailPage() {
     <div className="space-y-6">
       {/* Top Bar Navigation */}
       <div>
-        <Link href="/teacher" className="text-xs font-semibold text-slate-500 hover:text-ink transition-colors">
-          &larr; Back to Dashboard
+        <Link href="/teacher" className="inline-flex items-center gap-1.5 text-xs font-bold text-purple-700 hover:text-purple-900 transition-colors">
+          <span>&larr;</span> Back to Dashboard
         </Link>
       </div>
 
       {error && (
-        <div className="rounded-lg bg-red-50 border border-red-200 p-3.5 text-sm text-red-700">
+        <div className="rounded-xl bg-red-50 border border-red-200 p-4 text-xs font-semibold text-red-700">
           {error}
         </div>
       )}
       {success && (
-        <div className="rounded-lg bg-emerald-50 border border-emerald-200 p-3.5 text-sm text-emerald-700">
+        <div className="rounded-xl bg-emerald-50 border border-emerald-200 p-4 text-xs font-semibold text-emerald-700">
           {success}
         </div>
       )}
 
       {/* Assignment Header Card */}
-      <Card>
+      <Card className="p-7 sm:p-8 border-purple-100/90 shadow-md">
         <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
           <div>
             <div className="flex items-center gap-3">
-              <h1 className="text-2xl font-bold tracking-tight text-ink">{assignment.title}</h1>
+              <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-900">{assignment.title}</h1>
               <Badge label={assignment.status} />
             </div>
-            <p className="mt-1 text-sm font-medium text-slate-600">
-              {assignment.subjectName} — <span className="text-slate-500">{assignment.className}</span>
+            <p className="mt-1.5 text-sm font-semibold text-purple-900">
+              {assignment.subjectName} — <span className="text-slate-500 font-medium">{assignment.className}</span>
             </p>
           </div>
 
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-wrap gap-2.5">
             <button
               onClick={toggleStatus}
-              className={`rounded-lg px-3.5 py-2 text-xs font-semibold shadow-xs transition-colors ${
+              className={`rounded-xl px-4 py-2 text-xs font-bold shadow-xs transition-all ${
                 assignment.status === "Published"
-                  ? "border border-slate-300 bg-white text-slate-700 hover:bg-slate-50"
-                  : "bg-emerald-600 text-white hover:bg-emerald-700"
+                  ? "border border-purple-200 bg-white text-purple-900 hover:bg-purple-50"
+                  : "bg-gradient-to-r from-purple-600 to-indigo-600 text-white shadow-purple-600/30 hover:from-purple-500 hover:to-indigo-600"
               }`}
             >
               {assignment.status === "Published" ? "Unpublish to Draft" : "Publish Now"}
             </button>
             <button
               onClick={handleDelete}
-              className="rounded-lg border border-red-200 bg-white px-3.5 py-2 text-xs font-semibold text-red-600 hover:bg-red-50 transition-colors"
+              className="rounded-xl border border-red-200 bg-white px-4 py-2 text-xs font-bold text-red-600 hover:bg-red-50 transition-colors"
             >
               Delete
             </button>
           </div>
         </div>
 
-        <div className="mt-6 grid grid-cols-2 gap-4 border-t border-slate-100 pt-5 sm:grid-cols-4">
-          <div>
-            <p className="text-[11px] font-semibold uppercase tracking-wider text-slate-400">Deadline</p>
-            <p className="mt-1 text-xs font-semibold text-ink">
+        <div className="mt-6 grid grid-cols-2 gap-4 border-t border-purple-100/70 pt-5 sm:grid-cols-4">
+          <div className="rounded-xl bg-purple-50/40 p-3 border border-purple-100/60">
+            <p className="text-[10px] font-bold uppercase tracking-wider text-purple-900/60">Deadline</p>
+            <p className="mt-1 text-xs font-bold text-slate-900">
               {new Date(assignment.deadline).toLocaleDateString("en-US", {
                 month: "short",
                 day: "numeric",
@@ -176,59 +176,62 @@ export default function TeacherAssignmentDetailPage() {
               })}
             </p>
           </div>
-          <div>
-            <p className="text-[11px] font-semibold uppercase tracking-wider text-slate-400">Max Marks</p>
-            <p className="mt-1 text-xs font-semibold text-ink">{assignment.maxMarks} Points</p>
+          <div className="rounded-xl bg-purple-50/40 p-3 border border-purple-100/60">
+            <p className="text-[10px] font-bold uppercase tracking-wider text-purple-900/60">Max Marks</p>
+            <p className="mt-1 text-xs font-bold text-slate-900">{assignment.maxMarks} Points</p>
           </div>
-          <div>
-            <p className="text-[11px] font-semibold uppercase tracking-wider text-slate-400">Resubmissions</p>
-            <p className="mt-1 text-xs font-semibold text-ink">
+          <div className="rounded-xl bg-purple-50/40 p-3 border border-purple-100/60">
+            <p className="text-[10px] font-bold uppercase tracking-wider text-purple-900/60">Resubmissions</p>
+            <p className="mt-1 text-xs font-bold text-slate-900">
               {assignment.allowResubmission ? "Allowed" : "Blocked"}
             </p>
           </div>
-          <div>
-            <p className="text-[11px] font-semibold uppercase tracking-wider text-slate-400">Submissions</p>
-            <p className="mt-1 text-xs font-semibold text-brand-600">{submissions.length} Received</p>
+          <div className="rounded-xl bg-purple-50/40 p-3 border border-purple-100/60">
+            <p className="text-[10px] font-bold uppercase tracking-wider text-purple-900/60">Submissions</p>
+            <p className="mt-1 text-xs font-bold text-purple-700">{submissions.length} Received</p>
           </div>
         </div>
 
-        <div className="mt-6 border-t border-slate-100 pt-5">
-          <p className="text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">
+        <div className="mt-6 border-t border-purple-100/70 pt-5">
+          <p className="text-xs font-bold uppercase tracking-wider text-purple-900/60 mb-2">
             Instructions & Questions
           </p>
-          <div className="rounded-lg bg-slate-50 p-4 text-sm text-slate-700 whitespace-pre-wrap font-mono leading-relaxed">
+          <div className="rounded-2xl bg-purple-50/20 p-5 text-sm text-slate-800 whitespace-pre-wrap font-mono leading-relaxed border border-purple-100">
             {assignment.description}
           </div>
         </div>
       </Card>
 
       {/* Submissions Section */}
-      <Card className="overflow-hidden p-0">
-        <div className="border-b border-slate-100 px-6 py-4">
-          <h2 className="text-base font-bold text-ink">Student Submissions ({submissions.length})</h2>
+      <Card className="overflow-hidden p-0 border-purple-100/90 shadow-md">
+        <div className="border-b border-purple-100/70 px-6 py-4 bg-purple-50/20 flex items-center justify-between">
+          <div>
+            <h2 className="text-base font-bold text-slate-900">Student Submissions ({submissions.length})</h2>
+            <p className="text-xs text-slate-500">Evaluation and grading queue</p>
+          </div>
         </div>
 
         {submissions.length === 0 ? (
-          <div className="p-10 text-center text-sm text-slate-500">
+          <div className="p-12 text-center text-sm text-slate-500">
             No submissions received yet for this assignment.
           </div>
         ) : (
           <div className="overflow-x-auto">
             <table className="w-full text-left text-sm">
               <thead>
-                <tr className="border-b border-slate-200/80 bg-slate-50/50 text-xs uppercase font-semibold text-slate-500">
-                  <th className="px-6 py-3">Student Name</th>
-                  <th className="px-6 py-3">Submitted At</th>
-                  <th className="px-6 py-3">Status</th>
-                  <th className="px-6 py-3">Grade</th>
-                  <th className="px-6 py-3 text-right">Actions</th>
+                <tr className="border-b border-purple-100/70 bg-purple-50/40 text-[11px] uppercase font-bold text-purple-900/70 tracking-wider">
+                  <th className="px-6 py-3.5">Student Name</th>
+                  <th className="px-6 py-3.5">Submitted At</th>
+                  <th className="px-6 py-3.5">Status</th>
+                  <th className="px-6 py-3.5">Grade</th>
+                  <th className="px-6 py-3.5 text-right">Actions</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-slate-100">
+              <tbody className="divide-y divide-purple-100/50">
                 {submissions.map((sub) => (
-                  <tr key={sub.id} className="hover:bg-slate-50/50 transition-colors">
-                    <td className="px-6 py-4 font-semibold text-ink">{sub.studentName}</td>
-                    <td className="px-6 py-4 text-xs text-slate-600">
+                  <tr key={sub.id} className="hover:bg-purple-50/40 transition-colors">
+                    <td className="px-6 py-4 font-bold text-slate-900">{sub.studentName}</td>
+                    <td className="px-6 py-4 text-xs font-medium text-slate-600">
                       {new Date(sub.submittedAt).toLocaleDateString("en-US", {
                         month: "short",
                         day: "numeric",
@@ -241,17 +244,17 @@ export default function TeacherAssignmentDetailPage() {
                     </td>
                     <td className="px-6 py-4">
                       {sub.marks !== null ? (
-                        <span className="font-semibold text-emerald-700">
+                        <span className="font-bold text-emerald-700 bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-200">
                           {sub.marks} / {assignment.maxMarks}
                         </span>
                       ) : (
-                        <span className="text-xs text-slate-400 italic">Not graded</span>
+                        <span className="text-xs text-slate-400 font-medium italic">Not graded</span>
                       )}
                     </td>
                     <td className="px-6 py-4 text-right">
                       <button
                         onClick={() => openGradeModal(sub)}
-                        className="rounded-md bg-brand-50 px-3 py-1.5 text-xs font-semibold text-brand-700 hover:bg-brand-100 transition-colors"
+                        className="rounded-xl bg-purple-50 border border-purple-200 px-3.5 py-1.5 text-xs font-bold text-purple-800 hover:bg-purple-600 hover:text-white transition-all shadow-2xs"
                       >
                         {sub.marks !== null ? "Edit Grade" : "Grade Submission"}
                       </button>
@@ -264,36 +267,36 @@ export default function TeacherAssignmentDetailPage() {
         )}
       </Card>
 
-      {/* Grade Submission Modal Drawer */}
+      {/* Grade Submission Modal */}
       {selectedSubmission && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/40 backdrop-blur-xs p-4">
-          <div className="w-full max-w-2xl rounded-xl bg-white p-6 shadow-2xl space-y-5">
-            <div className="flex items-center justify-between border-b border-slate-100 pb-3">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/60 backdrop-blur-sm p-4 animate-fadeIn">
+          <div className="w-full max-w-2xl rounded-3xl bg-white p-7 shadow-2xl space-y-5 border border-purple-200">
+            <div className="flex items-center justify-between border-b border-purple-100 pb-4">
               <div>
-                <h3 className="text-lg font-bold text-ink">Grade Submission</h3>
-                <p className="text-xs text-slate-500">Student: {selectedSubmission.studentName}</p>
+                <h3 className="text-xl font-extrabold tracking-tight text-slate-900">Grade Student Submission</h3>
+                <p className="text-xs font-semibold text-purple-700">Student: {selectedSubmission.studentName}</p>
               </div>
               <button
                 onClick={() => setSelectedSubmission(null)}
-                className="text-slate-400 hover:text-ink text-xl font-bold"
+                className="flex h-8 w-8 items-center justify-center rounded-full bg-purple-50 text-slate-500 hover:bg-purple-100 hover:text-slate-900 transition-colors"
               >
                 &times;
               </button>
             </div>
 
             <div>
-              <p className="text-xs font-semibold uppercase tracking-wider text-slate-400 mb-1.5">
-                Submitted Content
+              <p className="text-xs font-bold uppercase tracking-wider text-slate-500 mb-1.5">
+                Submitted Solution Content
               </p>
-              <div className="max-h-48 overflow-y-auto rounded-lg bg-slate-50 p-4 text-sm text-slate-800 font-mono whitespace-pre-wrap border border-slate-200/80">
+              <div className="max-h-52 overflow-y-auto rounded-2xl bg-purple-50/20 p-4 text-sm text-slate-800 font-mono whitespace-pre-wrap border border-purple-100">
                 {selectedSubmission.content}
               </div>
             </div>
 
             <form onSubmit={handleGradeSubmit} className="space-y-4">
               <div>
-                <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-slate-600">
-                  Awarded Marks (Max: {assignment.maxMarks}) *
+                <label className="mb-1.5 block text-xs font-bold uppercase tracking-wider text-slate-600">
+                  Awarded Marks (Maximum: {assignment.maxMarks}) *
                 </label>
                 <input
                   type="number"
@@ -302,37 +305,37 @@ export default function TeacherAssignmentDetailPage() {
                   max={assignment.maxMarks}
                   value={gradeMarks}
                   onChange={(e) => setGradeMarks(Number(e.target.value))}
-                  className="w-full rounded-lg border border-slate-300 px-3.5 py-2 text-sm text-ink outline-none focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 font-bold"
+                  className="w-full rounded-xl border border-purple-200/80 bg-purple-50/20 px-4 py-2.5 text-sm text-slate-900 outline-none transition-all focus:border-purple-600 focus:bg-white focus:ring-4 focus:ring-purple-500/15 font-mono font-bold"
                 />
               </div>
 
               <div>
-                <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-slate-600">
+                <label className="mb-1.5 block text-xs font-bold uppercase tracking-wider text-slate-600">
                   Faculty Feedback & Remarks
                 </label>
                 <textarea
                   rows={3}
-                  placeholder="Provide constructive feedback for the student..."
+                  placeholder="Provide constructive feedback and grading justification for the student..."
                   value={gradeFeedback}
                   onChange={(e) => setGradeFeedback(e.target.value)}
-                  className="w-full rounded-lg border border-slate-300 p-3 text-sm text-ink outline-none focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20"
+                  className="w-full rounded-xl border border-purple-200/80 bg-purple-50/20 p-3.5 text-sm text-slate-900 outline-none transition-all focus:border-purple-600 focus:bg-white focus:ring-4 focus:ring-purple-500/15 font-medium"
                 />
               </div>
 
-              <div className="flex justify-end gap-3 border-t border-slate-100 pt-4">
+              <div className="flex justify-end gap-3 border-t border-purple-100 pt-4">
                 <button
                   type="button"
                   onClick={() => setSelectedSubmission(null)}
-                  className="rounded-lg border border-slate-300 bg-white px-4 py-2 text-xs font-semibold text-slate-700 hover:bg-slate-50"
+                  className="rounded-xl border border-slate-200 bg-white px-5 py-2.5 text-xs font-bold text-slate-700 hover:bg-slate-50 transition-all"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
                   disabled={submittingGrade}
-                  className="rounded-lg bg-emerald-600 px-4 py-2 text-xs font-semibold text-white shadow-xs hover:bg-emerald-700 disabled:opacity-60"
+                  className="rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 px-6 py-2.5 text-xs font-bold text-white shadow-md shadow-emerald-600/30 hover:from-emerald-500 hover:to-teal-500 disabled:opacity-60 transition-all"
                 >
-                  {submittingGrade ? "Saving Grade..." : "Save Grade"}
+                  {submittingGrade ? "Saving Grade..." : "Save Grade & Feedback"}
                 </button>
               </div>
             </form>

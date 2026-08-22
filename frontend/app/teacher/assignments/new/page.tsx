@@ -69,15 +69,22 @@ export default function CreateAssignmentPage() {
   return (
     <div className="mx-auto max-w-3xl space-y-6">
       <div>
-        <h1 className="text-2xl font-bold tracking-tight text-ink">Create New Assignment</h1>
+        <div className="flex items-center gap-2 mb-1">
+          <span className="text-[11px] font-bold uppercase tracking-wider text-purple-700">
+            Coursework Creation
+          </span>
+        </div>
+        <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-900">
+          Create New Assignment
+        </h1>
         <p className="mt-1 text-sm text-slate-500">
-          Formulate coursework instructions, set deadlines, and configure grading metrics.
+          Formulate coursework instructions, set submission deadlines, and configure evaluation criteria.
         </p>
       </div>
 
-      <Card>
+      <Card className="p-7 sm:p-9 border-purple-100/90 shadow-lg">
         {error && (
-          <div className="mb-6 rounded-lg bg-red-50 border border-red-200 p-3.5 text-sm text-red-700">
+          <div className="mb-6 rounded-xl bg-red-50 border border-red-200 p-4 text-xs font-semibold text-red-700">
             {error}
           </div>
         )}
@@ -85,7 +92,7 @@ export default function CreateAssignmentPage() {
         <form onSubmit={(e) => handleSubmit(e, publishImmediately)} className="space-y-6">
           {/* Title */}
           <div>
-            <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-slate-600">
+            <label className="mb-1.5 block text-xs font-bold uppercase tracking-wider text-slate-600">
               Assignment Title *
             </label>
             <input
@@ -93,23 +100,23 @@ export default function CreateAssignmentPage() {
               placeholder="e.g. Midterm Physics Problem Set 1"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
-              className="w-full rounded-lg border border-slate-300 px-3.5 py-2.5 text-sm text-ink outline-none focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 font-medium"
+              className="w-full rounded-xl border border-purple-200/80 bg-purple-50/20 px-4 py-3 text-sm text-slate-900 outline-none transition-all focus:border-purple-600 focus:bg-white focus:ring-4 focus:ring-purple-500/15 font-bold"
             />
           </div>
 
           {/* Subject & Class Picker */}
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             <div>
-              <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-slate-600">
+              <label className="mb-1.5 block text-xs font-bold uppercase tracking-wider text-slate-600">
                 Course Subject *
               </label>
               <select
                 required
                 value={subjectId}
                 onChange={(e) => handleSubjectChange(e.target.value)}
-                className="w-full rounded-lg border border-slate-300 px-3.5 py-2.5 text-sm text-ink outline-none focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20"
+                className="w-full rounded-xl border border-purple-200/80 bg-purple-50/20 px-4 py-2.5 text-sm text-slate-900 outline-none transition-all focus:border-purple-600 focus:bg-white focus:ring-4 focus:ring-purple-500/15 font-medium"
               >
-                <option value="">Select subject</option>
+                <option value="">Select assigned subject</option>
                 {subjects.map((s) => (
                   <option key={s.id} value={s.id}>
                     {s.name} ({s.className})
@@ -119,13 +126,13 @@ export default function CreateAssignmentPage() {
             </div>
 
             <div>
-              <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-slate-600">
-                Enrolled Class
+              <label className="mb-1.5 block text-xs font-bold uppercase tracking-wider text-slate-600">
+                Target Class (Auto-Inferred)
               </label>
               <select
                 disabled
                 value={classId}
-                className="w-full rounded-lg border border-slate-200 bg-slate-50 px-3.5 py-2.5 text-sm text-slate-600 outline-none"
+                className="w-full rounded-xl border border-purple-100 bg-purple-50/60 px-4 py-2.5 text-sm text-purple-950 font-semibold outline-none cursor-not-allowed"
               >
                 <option value="">Auto-selected from subject</option>
                 {classes.map((c) => (
@@ -140,7 +147,7 @@ export default function CreateAssignmentPage() {
           {/* Deadline & Max Marks */}
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             <div>
-              <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-slate-600">
+              <label className="mb-1.5 block text-xs font-bold uppercase tracking-wider text-slate-600">
                 Submission Deadline *
               </label>
               <input
@@ -148,13 +155,13 @@ export default function CreateAssignmentPage() {
                 required
                 value={deadline}
                 onChange={(e) => setDeadline(e.target.value)}
-                className="w-full rounded-lg border border-slate-300 px-3.5 py-2.5 text-sm text-ink outline-none focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20"
+                className="w-full rounded-xl border border-purple-200/80 bg-purple-50/20 px-4 py-2.5 text-sm text-slate-900 outline-none transition-all focus:border-purple-600 focus:bg-white focus:ring-4 focus:ring-purple-500/15 font-medium"
               />
             </div>
 
             <div>
-              <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-slate-600">
-                Maximum Marks *
+              <label className="mb-1.5 block text-xs font-bold uppercase tracking-wider text-slate-600">
+                Maximum Points / Marks *
               </label>
               <input
                 type="number"
@@ -163,50 +170,50 @@ export default function CreateAssignmentPage() {
                 max={1000}
                 value={maxMarks}
                 onChange={(e) => setMaxMarks(Number(e.target.value))}
-                className="w-full rounded-lg border border-slate-300 px-3.5 py-2.5 text-sm text-ink outline-none focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20"
+                className="w-full rounded-xl border border-purple-200/80 bg-purple-50/20 px-4 py-2.5 text-sm text-slate-900 outline-none transition-all focus:border-purple-600 focus:bg-white focus:ring-4 focus:ring-purple-500/15 font-mono font-bold"
               />
             </div>
           </div>
 
           {/* Description / Instructions */}
           <div>
-            <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-slate-600">
+            <label className="mb-1.5 block text-xs font-bold uppercase tracking-wider text-slate-600">
               Instructions & Questions *
             </label>
             <textarea
               required
               rows={6}
-              placeholder="Provide detailed assignment questions, submission guidelines, and reference criteria..."
+              placeholder="Provide detailed assignment questions, problem sets, guidelines, and reference expectations..."
               value={description}
               onChange={(e) => setDescription(e.target.value)}
-              className="w-full rounded-lg border border-slate-300 p-3.5 text-sm text-ink outline-none focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 font-mono"
+              className="w-full rounded-xl border border-purple-200/80 bg-purple-50/20 p-4 text-sm text-slate-900 outline-none transition-all focus:border-purple-600 focus:bg-white focus:ring-4 focus:ring-purple-500/15 font-mono"
             />
           </div>
 
-          {/* Options */}
-          <div className="rounded-lg bg-slate-50 p-4 border border-slate-200/80">
-            <label className="flex items-center gap-3 cursor-pointer">
+          {/* Options Card */}
+          <div className="rounded-2xl bg-purple-50/40 p-4 border border-purple-100/80">
+            <label className="flex items-center gap-3.5 cursor-pointer">
               <input
                 type="checkbox"
                 checked={allowResubmission}
                 onChange={(e) => setAllowResubmission(e.target.checked)}
-                className="h-4 w-4 rounded border-slate-300 text-brand-600 focus:ring-brand-500"
+                className="h-4 w-4 rounded border-purple-300 text-purple-600 focus:ring-purple-500"
               />
               <div>
-                <span className="text-sm font-semibold text-ink">Allow Student Resubmissions</span>
+                <span className="text-sm font-bold text-slate-900">Allow Student Resubmissions</span>
                 <p className="text-xs text-slate-500">
-                  Students may edit and resubmit their work prior to the deadline.
+                  Enables students to modify and re-upload their solution prior to deadline expiration.
                 </p>
               </div>
             </label>
           </div>
 
-          {/* Actions */}
-          <div className="flex flex-col gap-3 sm:flex-row sm:justify-end border-t border-slate-100 pt-5">
+          {/* Action Buttons */}
+          <div className="flex flex-col gap-3 sm:flex-row sm:justify-end border-t border-purple-100/70 pt-6">
             <button
               type="button"
               onClick={() => router.back()}
-              className="rounded-lg border border-slate-300 bg-white px-5 py-2.5 text-sm font-semibold text-slate-700 hover:bg-slate-50 transition-colors"
+              className="rounded-xl border border-slate-200 bg-white px-5 py-2.5 text-sm font-semibold text-slate-700 hover:bg-slate-50 transition-all"
             >
               Cancel
             </button>
@@ -214,7 +221,7 @@ export default function CreateAssignmentPage() {
               type="submit"
               disabled={submitting}
               onClick={() => setPublishImmediately(false)}
-              className="rounded-lg border border-slate-300 bg-white px-5 py-2.5 text-sm font-semibold text-ink hover:bg-slate-50 disabled:opacity-60 transition-colors"
+              className="rounded-xl border border-purple-200 bg-purple-50 px-5 py-2.5 text-sm font-bold text-purple-900 hover:bg-purple-100 disabled:opacity-60 transition-all"
             >
               {submitting && !publishImmediately ? "Saving..." : "Save as Draft"}
             </button>
@@ -222,7 +229,7 @@ export default function CreateAssignmentPage() {
               type="submit"
               disabled={submitting}
               onClick={() => setPublishImmediately(true)}
-              className="rounded-lg bg-brand-500 px-5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-brand-600 disabled:opacity-60 transition-colors"
+              className="rounded-xl bg-gradient-to-r from-purple-600 via-indigo-600 to-purple-700 px-6 py-2.5 text-sm font-bold text-white shadow-md shadow-purple-600/30 hover:from-purple-500 hover:to-indigo-600 hover:shadow-purple-600/40 hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.99] disabled:opacity-60 transition-all duration-200"
             >
               {submitting && publishImmediately ? "Publishing..." : "Publish Assignment"}
             </button>

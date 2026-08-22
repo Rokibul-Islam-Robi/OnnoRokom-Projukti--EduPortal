@@ -21,21 +21,21 @@ export function Pagination({
   const endItem = Math.min(currentPage * pageSize, totalItems);
 
   return (
-    <div className="flex flex-col gap-3 border-t border-slate-100 px-6 py-4 sm:flex-row sm:items-center sm:justify-between text-xs text-slate-500">
+    <div className="flex flex-col gap-3 border-t border-purple-100/70 px-6 py-4 sm:flex-row sm:items-center sm:justify-between text-xs text-slate-500 bg-purple-50/10">
       <div>
-        Showing <span className="font-semibold text-ink">{startItem}</span> to{" "}
-        <span className="font-semibold text-ink">{endItem}</span> of{" "}
-        <span className="font-semibold text-ink">{totalItems}</span> results
+        Showing <span className="font-bold text-slate-900">{startItem}</span> to{" "}
+        <span className="font-bold text-slate-900">{endItem}</span> of{" "}
+        <span className="font-bold text-slate-900">{totalItems}</span> entries
       </div>
 
       <div className="flex items-center gap-4">
         {onPageSizeChange && (
-          <div className="flex items-center gap-1.5">
-            <span>Per page:</span>
+          <div className="flex items-center gap-1.5 font-medium">
+            <span>Show:</span>
             <select
               value={pageSize}
               onChange={(e) => onPageSizeChange(Number(e.target.value))}
-              className="rounded-lg border border-slate-200 bg-white px-2 py-1 text-xs text-ink outline-none focus:border-brand-500"
+              className="rounded-xl border border-purple-200 bg-white px-2.5 py-1 text-xs font-bold text-purple-900 outline-none focus:border-purple-600 shadow-2xs"
             >
               <option value={5}>5</option>
               <option value={10}>10</option>
@@ -45,23 +45,23 @@ export function Pagination({
           </div>
         )}
 
-        <div className="flex items-center gap-1">
+        <div className="flex items-center gap-1.5">
           <button
             onClick={() => onPageChange(currentPage - 1)}
             disabled={currentPage <= 1}
-            className="rounded-lg border border-slate-200 bg-white px-3 py-1.5 font-semibold text-slate-600 hover:bg-slate-50 disabled:opacity-40 disabled:hover:bg-white transition-all"
+            className="rounded-xl border border-purple-200 bg-white px-3 py-1.5 font-bold text-purple-900 hover:bg-purple-50 disabled:opacity-40 disabled:hover:bg-white shadow-2xs transition-all"
           >
-            &larr; Previous
+            &larr; Prev
           </button>
 
-          <span className="px-2 font-semibold text-slate-700">
+          <span className="px-2 font-mono font-bold text-purple-950">
             {currentPage} / {Math.max(1, totalPages)}
           </span>
 
           <button
             onClick={() => onPageChange(currentPage + 1)}
             disabled={currentPage >= totalPages}
-            className="rounded-lg border border-slate-200 bg-white px-3 py-1.5 font-semibold text-slate-600 hover:bg-slate-50 disabled:opacity-40 disabled:hover:bg-white transition-all"
+            className="rounded-xl border border-purple-200 bg-white px-3 py-1.5 font-bold text-purple-900 hover:bg-purple-50 disabled:opacity-40 disabled:hover:bg-white shadow-2xs transition-all"
           >
             Next &rarr;
           </button>

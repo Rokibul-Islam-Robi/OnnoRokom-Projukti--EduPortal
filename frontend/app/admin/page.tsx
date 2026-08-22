@@ -32,17 +32,29 @@ export default function AdminOverviewPage() {
 
   return (
     <div className="space-y-8">
-      <div>
-        <h1 className="text-2xl font-bold tracking-tight text-ink">System Overview</h1>
-        <p className="mt-1 text-sm text-slate-500">
-          Manage classes, subjects, faculty assignments, and user accounts.
-        </p>
+      {/* Header */}
+      <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+        <div>
+          <div className="flex items-center gap-2 mb-1">
+            <span className="h-2 w-2 rounded-full bg-purple-600 animate-ping" />
+            <span className="text-[11px] font-bold uppercase tracking-wider text-purple-700">
+              System Administration
+            </span>
+          </div>
+          <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-900">
+            Enterprise System Overview
+          </h1>
+          <p className="mt-1 text-sm text-slate-500">
+            Comprehensive governance of faculty, student directory, class structures, and curriculum.
+          </p>
+        </div>
       </div>
 
+      {/* KPI Stats Cards */}
       {loading ? (
         <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {[...Array(4)].map((_, i) => (
-            <div key={i} className="h-28 animate-pulse rounded-xl bg-slate-200/60" />
+            <div key={i} className="h-32 animate-pulse rounded-2xl bg-purple-100/50" />
           ))}
         </div>
       ) : (
@@ -50,11 +62,11 @@ export default function AdminOverviewPage() {
           <StatCard
             label="Total Teachers"
             value={teacherCount}
-            subtext="Active teaching staff"
+            subtext="Active teaching faculty"
             variant="purple"
             badgeText="Faculty"
             icon={
-              <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
               </svg>
             }
@@ -62,11 +74,11 @@ export default function AdminOverviewPage() {
           <StatCard
             label="Enrolled Students"
             value={studentCount}
-            subtext="Across all classes"
+            subtext="Active in class rosters"
             variant="emerald"
             badgeText="Enrolled"
             icon={
-              <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 14l9-5-9-5-9 5 9 5z" />
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0112 20.055a11.952 11.952 0 01-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
               </svg>
@@ -75,11 +87,11 @@ export default function AdminOverviewPage() {
           <StatCard
             label="Active Classes"
             value={classes.length}
-            subtext="Academic sections"
+            subtext="Configured sections"
             variant="brand"
-            badgeText="Active"
+            badgeText="Classes"
             icon={
-              <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z" />
               </svg>
             }
@@ -87,11 +99,11 @@ export default function AdminOverviewPage() {
           <StatCard
             label="Curriculum Subjects"
             value={subjects.length}
-            subtext="Across all programs"
+            subtext="Active course tracks"
             variant="indigo"
             badgeText="Curriculum"
             icon={
-              <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
               </svg>
             }
@@ -99,78 +111,111 @@ export default function AdminOverviewPage() {
         </div>
       )}
 
+      {/* Main Grid: Guide & Roles */}
       <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
-        <Card className="md:col-span-2">
-          <h2 className="text-base font-bold text-ink">Quick Setup Guide</h2>
-          <p className="mt-1 text-xs text-slate-500">
-            Follow this workflow when setting up a new term or school year:
-          </p>
-          <div className="mt-5 space-y-4">
-            <div className="flex gap-4">
-              <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-brand-100 text-xs font-bold text-brand-700">
+        {/* Setup Workflow */}
+        <Card className="md:col-span-2 p-7">
+          <div className="flex items-center justify-between mb-6">
+            <div>
+              <h2 className="text-lg font-bold text-slate-900">Academic Initialization Workflow</h2>
+              <p className="text-xs text-slate-500 mt-0.5">Standard operation setup guide for administrators</p>
+            </div>
+            <span className="rounded-full bg-purple-100 px-3 py-1 text-[11px] font-bold text-purple-800">
+              Setup Guide
+            </span>
+          </div>
+
+          <div className="space-y-4">
+            <div className="group flex items-start gap-4 rounded-xl border border-purple-100/60 bg-purple-50/20 p-4 transition-all hover:bg-purple-50/60 hover:border-purple-200">
+              <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-purple-600 to-indigo-600 text-xs font-bold text-white shadow-xs">
                 1
               </div>
-              <div>
-                <p className="text-sm font-semibold text-ink">Create Classes</p>
-                <p className="text-xs text-slate-500">Define academic classes and sections (e.g. Class 10 - Section A).</p>
-                <Link href="/admin/classes" className="mt-1 inline-block text-xs font-medium text-brand-600 hover:underline">
-                  Manage Classes &rarr;
-                </Link>
+              <div className="flex-1">
+                <div className="flex items-center justify-between">
+                  <p className="text-sm font-bold text-slate-900">Establish Academic Classes</p>
+                  <Link href="/admin/classes" className="text-xs font-bold text-purple-700 hover:text-purple-900 transition-colors">
+                    Manage Classes &rarr;
+                  </Link>
+                </div>
+                <p className="mt-1 text-xs text-slate-500 leading-relaxed">
+                  Configure class definitions, grades, and section allocations (e.g. Class 10 - Section A).
+                </p>
               </div>
             </div>
-            <div className="flex gap-4">
-              <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-brand-100 text-xs font-bold text-brand-700">
+
+            <div className="group flex items-start gap-4 rounded-xl border border-purple-100/60 bg-purple-50/20 p-4 transition-all hover:bg-purple-50/60 hover:border-purple-200">
+              <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-purple-600 to-indigo-600 text-xs font-bold text-white shadow-xs">
                 2
               </div>
-              <div>
-                <p className="text-sm font-semibold text-ink">Add Subjects</p>
-                <p className="text-xs text-slate-500">Add course subjects assigned to specific classes (e.g. Physics for Class 10).</p>
-                <Link href="/admin/subjects" className="mt-1 inline-block text-xs font-medium text-brand-600 hover:underline">
-                  Manage Subjects &rarr;
-                </Link>
+              <div className="flex-1">
+                <div className="flex items-center justify-between">
+                  <p className="text-sm font-bold text-slate-900">Register Curriculum Subjects</p>
+                  <Link href="/admin/subjects" className="text-xs font-bold text-purple-700 hover:text-purple-900 transition-colors">
+                    Manage Subjects &rarr;
+                  </Link>
+                </div>
+                <p className="mt-1 text-xs text-slate-500 leading-relaxed">
+                  Create specific subjects linked directly to respective academic grade levels.
+                </p>
               </div>
             </div>
-            <div className="flex gap-4">
-              <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-brand-100 text-xs font-bold text-brand-700">
+
+            <div className="group flex items-start gap-4 rounded-xl border border-purple-100/60 bg-purple-50/20 p-4 transition-all hover:bg-purple-50/60 hover:border-purple-200">
+              <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-purple-600 to-indigo-600 text-xs font-bold text-white shadow-xs">
                 3
               </div>
-              <div>
-                <p className="text-sm font-semibold text-ink">Provision Accounts</p>
-                <p className="text-xs text-slate-500">Create teacher and student user accounts with initial credentials.</p>
-                <Link href="/admin/users" className="mt-1 inline-block text-xs font-medium text-brand-600 hover:underline">
-                  Manage Users &rarr;
-                </Link>
+              <div className="flex-1">
+                <div className="flex items-center justify-between">
+                  <p className="text-sm font-bold text-slate-900">Provision Faculty & Student Accounts</p>
+                  <Link href="/admin/users" className="text-xs font-bold text-purple-700 hover:text-purple-900 transition-colors">
+                    Manage Users &rarr;
+                  </Link>
+                </div>
+                <p className="mt-1 text-xs text-slate-500 leading-relaxed">
+                  Register secure role-based credentials for teachers and assign students to their classes.
+                </p>
               </div>
             </div>
-            <div className="flex gap-4">
-              <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-brand-100 text-xs font-bold text-brand-700">
+
+            <div className="group flex items-start gap-4 rounded-xl border border-purple-100/60 bg-purple-50/20 p-4 transition-all hover:bg-purple-50/60 hover:border-purple-200">
+              <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-purple-600 to-indigo-600 text-xs font-bold text-white shadow-xs">
                 4
               </div>
-              <div>
-                <p className="text-sm font-semibold text-ink">Assign Faculty</p>
-                <p className="text-xs text-slate-500">Link teachers to their respective subjects to grant assignment creation permissions.</p>
-                <Link href="/admin/subjects" className="mt-1 inline-block text-xs font-medium text-brand-600 hover:underline">
-                  Assign Teachers &rarr;
-                </Link>
+              <div className="flex-1">
+                <div className="flex items-center justify-between">
+                  <p className="text-sm font-bold text-slate-900">Delegate Faculty Authority</p>
+                  <Link href="/admin/subjects" className="text-xs font-bold text-purple-700 hover:text-purple-900 transition-colors">
+                    Assign Teachers &rarr;
+                  </Link>
+                </div>
+                <p className="mt-1 text-xs text-slate-500 leading-relaxed">
+                  Authorize teachers over their assigned courses to unlock coursework publishing & grading.
+                </p>
               </div>
             </div>
           </div>
         </Card>
 
-        <Card className="flex flex-col justify-between bg-slate-900 text-white">
+        {/* Corporate Dark Glass Card */}
+        <div className="relative flex flex-col justify-between overflow-hidden rounded-2xl border border-purple-500/25 bg-gradient-to-br from-[#1c0a36] via-[#140628] to-[#0d031c] p-7 text-white shadow-xl">
+          <div className="absolute -top-12 -right-12 h-36 w-36 rounded-full bg-purple-500/20 blur-2xl pointer-events-none" />
+
           <div>
-            <div className="inline-flex rounded-md bg-slate-800 px-2.5 py-1 text-xs font-semibold text-brand-400">
-              System Admin
+            <div className="inline-flex items-center gap-1.5 rounded-full bg-purple-500/20 border border-purple-400/30 px-3 py-1 text-xs font-bold text-purple-300">
+              <span className="h-1.5 w-1.5 rounded-full bg-purple-400 animate-ping" />
+              Role-Based Security
             </div>
-            <h3 className="mt-4 text-lg font-bold">Role Capabilities</h3>
-            <p className="mt-2 text-xs leading-relaxed text-slate-300">
-              As Administrator, you hold full governance over system users, classes, subjects, and teacher assignments. Teachers manage assignments and grades for their subjects, while students view and submit homework for their class.
+            <h3 className="mt-5 text-xl font-extrabold tracking-tight">Enterprise Governance</h3>
+            <p className="mt-3 text-xs leading-relaxed text-purple-200/80">
+              The system enforces strict role-based isolation. Administrators manage users and curricula, faculty publish and grade coursework, and students submit solutions under real-time deadline monitoring.
             </p>
           </div>
-          <div className="mt-6 border-t border-slate-800 pt-4">
-            <p className="text-[11px] text-slate-400">Role-Based Access Enforcement Active</p>
+
+          <div className="mt-8 border-t border-purple-500/20 pt-4 flex items-center justify-between text-[11px] text-purple-300">
+            <span>🛡️ ASP.NET Core EF Security</span>
+            <span>PostgreSQL Active</span>
           </div>
-        </Card>
+        </div>
       </div>
     </div>
   );
